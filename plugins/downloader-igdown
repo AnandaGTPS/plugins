@@ -1,3 +1,6 @@
+// saat ingin menggunakan fitur ini, jangan lupa install package nya
+// npm i btch-downloader
+
 const { igdl } = require('btch-downloader')
 
 let handler = async (m, { conn, args, usedPrefix, command }) => {
