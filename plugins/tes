@@ -1,0 +1,1 @@
+tersimpan di plugins/dontol1.js
