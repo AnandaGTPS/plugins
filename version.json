@@ -6,7 +6,7 @@
   'outdated_mess': 'Kamu menggunakan nazzplugin versi lama, silahkan install versi terbarunya',
   'path': 'plugins',
   'plugins': {
-    main: '1.0.1',
+    'main': '1.0.1',
     'tools-obfuscator': '1.0.0',
     'tools-remini': '1.0.0',
     'tools-poll': '1.0.0',
