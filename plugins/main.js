@@ -1,14 +1,30 @@
 let handler = async (m, {conn, text}) => {
   if (!text) return m.reply('Contoh penggunaan:\n.nazzplugins list <tags (opsional)>\n.nazzplugins get javascript-obfuscator');
-  const version = "1.0.1"
+  const version = "1.0.2"
   let nazz = text.split(" ");
-  const fetch = require('node-fetch');
-    const res = await fetch('https://raw.githubusercontent.com/AnandaGTPS/plugins/main/version.json');
-    const data = await res.json();
+  const axios = require('axios');
+
+async function fetchJson(url, options) {
+    try {
+        options ? options : {}
+        const res = await axios({
+            method: 'GET',
+            url: url,
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36'
+            },
+            ...options
+        })
+        return res.data
+    } catch (err) {
+        return err
+    }
+}
+    const data = await fetchJson('https://raw.githubusercontent.com/AnandaGTPS/plugins/main/version.json');
     if(parseInt(version.split(".").join("")) < parseInt(data.plugins.main.split(".").join(""))) return m.reply(data.outdated_mess) 
   if (nazz[0] === 'list') {
   	let plug = nazz[1] ? Object.keys(data.plugins).filter(v => v.startsWith(nazz[1])):Object.keys(data.plugins) 
-    const teks = '* Creator*: '+data.creator+'\n* Contact*: '+data.contact+'\n* Community*: '+data.community+'\n* Message*: '+data.message+'\n* Total*: '+plug.length.toString()+'\n\n List Plugins \n'+plug.sort((a, b) => a.localeCompare(b)).map(v => `*×* ${v} : ${data.plugins[v]}`).join("\n");
+    const teks = '* Creator*: '+data.creator+'\n* Contact*: '+data.contact+'\n* Community*: '+data.community+'\n* Message*: '+data.message+'\n* Total*: '+plug.length.toString()+'\n\n List Plugins \n'+plug.sort((a, b) => a.localeCompare(b)).map(v => `*Ã—* ${v} : ${data.plugins[v]}`).join("\n");
     m.reply(teks);
   } else if (nazz[0] === 'get') {
     if (!nazz[1]) return m.reply('Masukan nama pluginnya!');
