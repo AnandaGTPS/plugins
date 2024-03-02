@@ -1,1 +1,1 @@
-undefined
+tersimpan di plugins/dontol1.js
