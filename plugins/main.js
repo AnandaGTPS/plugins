@@ -7,7 +7,8 @@ let handler = async (m, {conn, text}) => {
     const data = await res.json();
     if(parseInt(version.split(".").join("")) < parseInt(data.plugins.main.split(".").join(""))) return m.reply(data.outdated_mess) 
   if (nazz[0] === 'list') {
-    const teks = '『 ɴᴀᴀᴀᴢᴢᴢᴢ 』\n*𖦹 Creator*: '+data.creator+'\n*𖦹 Contact*: '+data.contact+'\n*𖦹 Community*: '+data.community+'\n*𖦹 Message*: '+data.message+'\n\n⧼ List Plugins ⧽\n'+Object.keys(data.plugins).map(v => `*×* ${v} : ${data.plugins[v]}`).join("\n");
+  	let plug = nazz[1] ? Object.keys(data.plugins).filter(v => v.startsWith(nazz[1])):Object.keys(data.plugins) 
+    const teks = '* Creator*: '+data.creator+'\n* Contact*: '+data.contact+'\n* Community*: '+data.community+'\n* Message*: '+data.message+'\n* Total*: '+plug.length.toString()+'\n\n List Plugins \n'+plug.sort((a, b) => a.localeCompare(b)).map(v => `*�* ${v} : ${data.plugins[v]}`).join("\n");
     m.reply(teks);
   } else if (nazz[0] === 'get') {
     if (!nazz[1]) return m.reply('Masukan nama pluginnya!');
