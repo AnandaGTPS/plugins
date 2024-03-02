@@ -17,6 +17,6 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
 handler.help = ['igdown'].map(v => v + ' <url>')
 handler.tags = ['downloader']
 handler.command = /^(igdown)$/i
-handler.limit = true
+handler.limit = false
 
 module.exports = handler
